@@ -1,13 +1,15 @@
 import { sveltekit } from "@sveltejs/kit/vite";
-// @ts-ignore
-import crossOriginIsolation from "vite-plugin-cross-origin-isolation";
 
 export default {
   plugins: [sveltekit()],
   optimizeDeps: {
-    exclude: ["openseadragon.js", "openseadragon"],
+    exclude: ["vips-es6.js", "wasm-vips"],
   },
   server: {
     port: 3000,
+    headers: {
+      "Cross-Origin-Embedder-Policy": "credentialless",
+      "Cross-Origin-Opener-Policy": "same-origin",
+    },
   },
 };
